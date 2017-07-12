@@ -1,6 +1,7 @@
 # Restaurant_BillingManagment_System_JSF
 This is an application to demonstrate JSF(PrimeFaces).
-Note: This is only for demonstration of JSF and some of the best practices such as database connection has not been followed.
+
+**Note: This is only for demonstration of JSF and some of the best practices such as connection pooling and usage of hibernate has not been followed.**
 
 
 ## Deployment
