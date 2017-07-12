@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<title>#{msgs.titleMessage}</title>
+</h:head>
+<h:body>
+	<ui:include src="/WEB-INF/htmls/header.xhtml" />
+	<div id="mainDoc">
+		<f:view>
+			<div id="leftManagedProductTable">
+				<h:form>
+					<p:dataTable id="productDataTableManagedProducts"
+						value="#{productBean.allProducts}" var="p" paginator="true"
+						rows="7" rowKey="#{p.ID}"
+						paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+						rowsPerPageTemplate="7,14,21" lazy="true"
+						styleClass="productDataTable">
+						update=":productDialogFormAdded"
+						oncomplete="PF('productDetailsForAdding').show()" />
+					<f:facet name="header">#{msgs.manageProductInstruction}</f:facet>
+						<p:column sortBy="#{product.ID}">
+							<f:facet name="header">#{msgs.productId}</f:facet>
+							<h:outputText value="#{p.ID}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">#{msgs.productName}</f:facet>
+							<h:outputText value="#{p.name}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">#{msgs.productCategory}</f:facet>
+							<h:outputText value="#{p.category}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">#{msgs.productPrice}</f:facet>
+							<h:outputText value="#{p.price}" /> $
+						</p:column>
+					</p:dataTable>
+				</h:form>
+				<div id="managedProductTableLogout">
+					<ui:include src="/logout.xhtml" />
+				</div>
+			</div>
+			<div id="rightManagedProductTable">
+				<ui:include src="/addProduct.xhtml" />
+				<ui:include src="/deleteProduct.xhtml" />
+				<ui:include src="/findProduct.xhtml" />
+			</div>
+		</f:view>
+	</div>
+</h:body>
+</html>

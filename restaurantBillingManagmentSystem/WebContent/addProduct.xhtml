@@ -1,0 +1,55 @@
+<!-- 
+Author: Yashar Rahvar
+addProduct JSP page 
+This JSP is responsible to show the add product table.
+-->
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<body>
+	<ui:composition>
+		<div class="products">
+			<h:dataTable headerClass="managedproductsAddHeader"
+				styleClass="employeesTables">
+				<h:column>
+					<f:facet name="header">#{msgs.addProductTableMessage}</f:facet>
+				</h:column>
+			</h:dataTable>
+			<h:form id="addProductForm">
+				<h:panelGrid columns="3" style="calendar">
+					#{msgs.productID}
+					<p:inputText value="#{database.selectedProduct.ID}" binding="#{ID}"
+						id="idInputText" required="true"
+						requiredMessage="#{validationMsgs.productIDRequired}"
+						validatorMessage="#{validationMsgs.invalidIDFormat}" converterMessage="#{validationMsgs.invalidIDFormat}">
+						<f:convertNumber integerOnly="true"/>
+					</p:inputText>
+					<p:message for="idInputText" />
+					#{msgs.productName}
+					<p:inputText value="#{database.selectedProduct.name}"
+						binding="#{name}" id="nameInputText" required="true"
+						requiredMessage="#{validationMsgs.productNameRequired}" />
+					<p:message for="nameInputText" />
+					#{msgs.productCategory}
+					<p:inputText value="#{database.selectedProduct.category}"
+						binding="#{category}" id="categoryInputText" required="true"
+						requiredMessage="#{validationMsgs.productCategoryRequired}" />
+					<p:message for="categoryInputText" />
+					#{msgs.productPrice}
+					<p:inputText value="#{database.selectedProduct.price}"
+						binding="#{price}" id="priceInputText" required="true"
+						requiredMessage="#{validationMsgs.productPriceRequired}" >
+						<f:convertNumber pattern="0.00"/>
+					</p:inputText>
+					<p:message for="priceInputText" />
+				</h:panelGrid>
+				<h:commandButton value="#{msgs.addPrompt}" action="#{database.add}"/>
+			</h:form>
+		</div>
+	</ui:composition>
+</body>
+</html>

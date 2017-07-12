@@ -1,0 +1,45 @@
+<!-- 
+Author: Yashar Rahvar
+index JSP page 
+This JSP is responsible to show the main page.
+-->
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<h:outputStylesheet library="css" name="styles.css" />
+	<title>#{msgs.titleMessage}</title>
+</h:head>
+<h:body>
+	<ui:include src="/WEB-INF/htmls/header.xhtml" />
+	<div id="mainDoc">
+		<div id="mainTableHeader">
+			<div id="porfileName">
+				<h2>#{msgs.welcome} #{request.remoteUser}</h2>
+			</div>
+			<div id="porfilePictreGraphicalImage">
+				<span class="helper"></span>
+				<h:graphicImage
+					value="resources/images/users/#{request.remoteUser}.jpg" />
+			</div>
+		</div>
+
+		<div id="mainTableBody">
+			<p:button outcome="billing" value="#{msgs.billing}" />
+			<c:if test="#{request.isUserInRole('user')}">
+			<p:button outcome="index" value="#{msgs.manageProducts}" disabled="true" />
+			</c:if>
+			<c:if test="#{request.isUserInRole('admin')}">
+			<p:button outcome="managedProducts" value="#{msgs.manageProducts}"/>
+			</c:if>
+		</div>
+		<div id="mainTableLogout">
+		<ui:include src="/logout.xhtml" />
+		</div>
+	</div>
+</h:body>
+</html>

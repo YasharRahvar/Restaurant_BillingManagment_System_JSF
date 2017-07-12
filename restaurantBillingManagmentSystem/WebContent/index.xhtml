@@ -1,0 +1,22 @@
+<!-- 
+Author: Yashar Rahvar
+index JSP page 
+This JSP is responsible to show the main page which includes all tables.
+-->
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+<h:outputStylesheet library="css" name="styles.css"/>
+<title>#{msgs.titleMessage}</title>
+</h:head>
+<h:body>
+<ui:include src="/WEB-INF/htmls/header.xhtml" />
+<div id="mainDoc">
+<div id="middleOfMainDoc">
+<center><h1><h:link value="#{msgs.accessToApllication}" outcome="mainPage" style="text-decoration:none; color: white;"/></h1></center>
+</div>
+</div>
+</h:body>
+</html>

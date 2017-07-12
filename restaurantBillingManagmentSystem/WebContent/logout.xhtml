@@ -1,0 +1,24 @@
+<!-- 
+Author: Yashar Rahvar
+logout JSP page 
+This JSP is responsible to show the logout table.
+-->
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<body>
+	<ui:composition>
+		<h:dataTable>
+			<h:column>
+				<f:facet name="header">#{msgs.logout}</f:facet>
+			</h:column>
+		</h:dataTable>
+		<h:form id="logoutForm">
+			<h:commandButton id="logout" value="#{msgs.signout}"
+				action="#{userManager.logout}" />
+		</h:form>
+	</ui:composition>
+</body>
+</html>
